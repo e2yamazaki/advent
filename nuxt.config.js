@@ -51,7 +51,7 @@ export default {
   },
   generate: {
     routes() {
-      return axios.get('https://api.github.com/repos/e2yamazaki/jamblog/issues').then(res => {
+      return axios.get('https://api.github.com/repos/e2yamazaki/advent/issues').then(res => {
         return res.data.map(post => {
           return {
             route: '/post/' + post.id,
