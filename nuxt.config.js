@@ -1,3 +1,4 @@
+import axios from 'axios'
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -47,5 +48,17 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+  generate: {
+    routes() {
+      return axios.get('https://api.github.com/repos/e2yamazaki/jamblog/issues').then(res => {
+        return res.data.map(post => {
+          return {
+            route: '/post/' + post.id,
+            payload: post
+          }
+        })
+      })
+    }
   }
 }
